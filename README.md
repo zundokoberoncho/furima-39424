@@ -59,7 +59,7 @@ Things you may want to cover:
 | shipping_fee_id  | integer     | null: false                       |
 | prefecture_id    | integer     | null: false                       |
 | shipping_days_id | integer     | null: false                       |
-| price_id         | integer     | null: false                       |
+| price            | integer     | null: false                       |
 | user             | references  | null: false, foreign_key: true    |
 
 #### Association
@@ -73,8 +73,8 @@ Things you may want to cover:
 | Column  | Type       | Options                         |
 |---------|------------|---------------------------------|
 | id      | integer    | Primary Key                     |
-| user_id | references | null: false, foreign_key: true  |
-| item_id | references | null: false, foreign_key: true  |
+| user    | references | null: false, foreign_key: true  |
+| item    | references | null: false, foreign_key: true  |
 
 #### Association
 - belongs_to :user
@@ -94,7 +94,7 @@ Things you may want to cover:
 | address       | string     | null: false                             |
 | building      | string     |                                         |
 | phone_number  | string     | null: false                             |
-| purchase_id   | references | null: false, foreign_key: true          |
+| purchase      | references | null: false, foreign_key: true          |
 
 #### Association
 - belongs_to :purchase
