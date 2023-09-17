@@ -29,13 +29,17 @@ Things you may want to cover:
 
 ### Users Table
 
-| Column    | Type    | Options     |
-|-----------|---------|-------------|
-| id        | integer | Primary Key |
-| nickname  | string  | NOT NULL    |
-| email     | string  | NOT NULL, UNIQUE |
-| password  | string  | NOT NULL    |
-| birthdate | date    | NOT NULL    |
+| Column             | Type    | Options                                 |
+|--------------------|---------|-----------------------------------------|
+| id                 | integer | Primary Key                             |
+| nickname           | string  | null: false                             |
+| email              | string  | null: false, unique: true               |
+| encrypted_password | string  | null: false                             |
+| last_name          | string  | null: false, 全角（漢字・ひらがな・カタカナ） |
+| first_name         | string  | null: false, 全角（漢字・ひらがな・カタカナ） |
+| last_name_kana     | string  | null: false, 全角（カタカナ）              |
+| first_name_kana    | string  | null: false, 全角（カタカナ）              |
+| birthdate          | date    | null: false                             |
 
 #### Association
 - has_many :items
@@ -45,19 +49,18 @@ Things you may want to cover:
 
 ### Items Table
 
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| id            | integer    | Primary Key                    |
-| image         | string     | NOT NULL                       |
-| name          | string     | NOT NULL                       |
-| description   | text       | NOT NULL                       |
-| category      | string     | NOT NULL                       |
-| condition     | string     | NOT NULL                       |
-| shipping_fee  | string     | NOT NULL                       |
-| prefecture    | string     | NOT NULL                       |
-| shipping_days | string     | NOT NULL                       |
-| price         | integer    | NOT NULL                       |
-| user_id       | references | NOT NULL, FOREIGN KEY (user)   |
+| Column           | Type        | Options                           |
+|------------------|-------------|-----------------------------------|
+| id               | integer     | Primary Key                       |
+| name             | string      | null: false                       |
+| description      | text        | null: false                       |
+| category_id      | integer     | null: false                       |
+| condition_id     | integer     | null: false                       |
+| shipping_fee_id  | integer     | null: false                       |
+| prefecture_id    | integer     | null: false                       |
+| shipping_days_id | integer     | null: false                       |
+| price_id         | integer     | null: false                       |
+| user             | references  | null: false, foreign_key: true    |
 
 #### Association
 - belongs_to :user
@@ -67,11 +70,11 @@ Things you may want to cover:
 
 ### Purchases Table
 
-| Column  | Type       | Options                       |
-|---------|------------|-------------------------------|
-| id      | integer    | Primary Key                   |
-| user_id | references | NOT NULL, FOREIGN KEY (user)  |
-| item_id | references | NOT NULL, FOREIGN KEY (item)  |
+| Column  | Type       | Options                         |
+|---------|------------|---------------------------------|
+| id      | integer    | Primary Key                     |
+| user_id | references | null: false, foreign_key: true  |
+| item_id | references | null: false, foreign_key: true  |
 
 #### Association
 - belongs_to :user
@@ -82,16 +85,16 @@ Things you may want to cover:
 
 ### ShippingAddresses Table
 
-| Column      | Type       | Options                          |
-|-------------|------------|----------------------------------|
-| id          | integer    | Primary Key                      |
-| postal_code | string     | NOT NULL                         |
-| prefecture  | string     | NOT NULL                         |
-| city        | string     | NOT NULL                         |
-| address     | string     | NOT NULL                         |
-| building    | string     |                                  |
-| phone_number| string     | NOT NULL                         |
-| purchase_id | references | NOT NULL, FOREIGN KEY (purchase) |
+| Column        | Type       | Options                                 |
+|---------------|------------|-----------------------------------------|
+| id            | integer    | Primary Key                             |
+| postal_code   | string     | null: false                             |
+| prefecture_id | integer    | null: false                             |
+| city          | string     | null: false                             |
+| address       | string     | null: false                             |
+| building      | string     |                                         |
+| phone_number  | string     | null: false                             |
+| purchase_id   | references | null: false, foreign_key: true          |
 
 #### Association
 - belongs_to :purchase
