@@ -29,17 +29,17 @@ Things you may want to cover:
 
 ### Users Table
 
-| Column             | Type    | Options                                 |
-|--------------------|---------|-----------------------------------------|
-| id                 | integer | Primary Key                             |
-| nickname           | string  | null: false                             |
-| email              | string  | null: false, unique: true               |
-| encrypted_password | string  | null: false                             |
-| last_name          | string  | null: false, 全角（漢字・ひらがな・カタカナ） |
-| first_name         | string  | null: false, 全角（漢字・ひらがな・カタカナ） |
-| last_name_kana     | string  | null: false, 全角（カタカナ）              |
-| first_name_kana    | string  | null: false, 全角（カタカナ）              |
-| birthdate          | date    | null: false                             |
+| Column             | Type    | Options                   |
+|--------------------|---------|---------------------------|
+| id                 | integer | Primary Key               |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| birthdate          | date    | null: false               |
 
 #### Association
 - has_many :items
@@ -49,18 +49,18 @@ Things you may want to cover:
 
 ### Items Table
 
-| Column           | Type        | Options                           |
-|------------------|-------------|-----------------------------------|
-| id               | integer     | Primary Key                       |
-| name             | string      | null: false                       |
-| description      | text        | null: false                       |
-| category_id      | integer     | null: false                       |
-| condition_id     | integer     | null: false                       |
-| shipping_fee_id  | integer     | null: false                       |
-| prefecture_id    | integer     | null: false                       |
-| shipping_days_id | integer     | null: false                       |
-| price            | integer     | null: false                       |
-| user             | references  | null: false, foreign_key: true    |
+| Column          | Type        | Options                           |
+|-----------------|-------------|-----------------------------------|
+| id              | integer     | Primary Key                       |
+| name            | string      | null: false                       |
+| description     | text        | null: false                       |
+| category_id     | integer     | null: false                       |
+| condition_id    | integer     | null: false                       |
+| shipping_fee_id | integer     | null: false                       |
+| prefecture_id   | integer     | null: false                       |
+| shipping_day_id | integer     | null: false                       |
+| price           | integer     | null: false                       |
+| user            | references  | null: false, foreign_key: true    |
 
 #### Association
 - belongs_to :user
