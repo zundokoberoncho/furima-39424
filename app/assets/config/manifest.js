@@ -3,3 +3,8 @@
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
 //= link application.css
+//= link user/login.css
+//= link user/registration.css
+//= link shared/header.css
+//= link shared/footer.css
+//= link furima-footer.png
