@@ -18,7 +18,7 @@
         <label class="form-text">ニックネーム</label>
         <span class="indispensable">必須</span>
       </div>
-      <textarea class="input-default" id="nickname" placeholder="例) furima太郎" maxlength="40" autofocus="autofocus" name="user[nickname]"></textarea>
+      <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"例) furima太郎", maxlength:"40", autofocus: true  %>
     </div>
 
     <div class="form-group">
@@ -26,7 +26,7 @@
         <label class="form-text">メールアドレス</label>
         <span class="indispensable">必須</span>
       </div>
-      <input class="input-default" id="email" placeholder="PC・携帯どちらでも可" type="email" value="" name="user[email]">
+        <%= f.email_field :email, class: "input-default", id: "email", placeholder: "PC・携帯どちらでも可" %>
     </div>
 
     <div class="form-group">
@@ -34,7 +34,7 @@
         <label class="form-text">パスワード</label>
         <span class="indispensable">必須</span>
       </div>
-      <input class="input-default" id="password" placeholder="6文字以上の半角英数字" type="password" name="user[password]">
+      <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可" %>
       <p class="info-text">※英字と数字の両方を含めて設定してください</p>
     </div>
 
@@ -43,7 +43,7 @@
         <label class="form-text">パスワード(確認)</label>
         <span class="indispensable">必須</span>
       </div>
-      <input class="input-default" id="password-confirmation" placeholder="同じパスワードを入力して下さい" type="password" name="user[password_confirmation]">
+        <%= f.password_field :password_confirmation, class: "input-default", id: "password-confirmation", placeholder: "同じパスワードを入力して下さい" %>
     </div>
 
     <div class="form-group">
@@ -62,8 +62,8 @@
         <span class="indispensable">必須</span>
       </div>
       <div class="input-name-wrap">
-        <textarea class="input-name" id="last-name" placeholder="例) 山田" name="user[last_name]"></textarea>
-        <textarea class="input-name" id="first-name" placeholder="例) 陸太郎" name="user[first_name]"></textarea>
+        <%= f.text_area :last_name, class:"input-name", id:"last-name", placeholder:"例) 山田", autofocus: true %>
+        <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 陸太郎", autofocus: true %>
       </div>
     </div>
 
@@ -74,8 +74,8 @@
         <span class="indispensable">必須</span>
       </div>
       <div class="input-name-wrap">
-        <textarea class="input-name" id="last-name-kana" placeholder="例) ヤマダ" name="user[last_name_kana]"></textarea>
-        <textarea class="input-name" id="first-name-kana" placeholder="例) リクタロウ" name="user[first_name_kana]"></textarea>
+        <%= f.text_area :last_name_kana, class:"input-name", id:"last-name-kana", placeholder:"例) ヤマダ", autofocus: true %>
+        <%= f.text_area :first_name_kana, class:"input-name", id:"first-name-kana", placeholder:"例) リクタロウ", autofocus: true %>
       </div>
     </div>
 
