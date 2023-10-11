@@ -112,7 +112,6 @@ RSpec.describe User, type: :model do
         expect(@user).to_not be_valid
       end
 
-
       it '生年月日が必須であること' do
         @user.birth_date = ''
         expect(@user).to_not be_valid
