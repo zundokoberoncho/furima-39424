@@ -1,34 +1,66 @@
-<%= render "shared/second-header"%>
+<%= stylesheet_link_tag 'user/login', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<%= form_with class: 'registration-main', local: true do |f| %>
-<div class='form-wrap'>
-  <div class='form-header'>
-    <h1 class='form-header-text'>
-      会員情報入力
-    </h1>
-  </div>
-  <div class='login-flash-message'>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メールアドレス</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.email_field :hoge, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :hoge, class:"input-default", id:"password", placeholder:"" %>
-  </div>
-  <div class='login-btn'>
-    <%= f.submit "ログイン" ,class:"login-red-btn" %>
-  </div>
-</div>
-<% end %>
+<!DOCTYPE html>
+<html>
 
-<%= render "shared/second-footer"%>
+<head>
+  <title>Furima</title>
+  <meta name="csrf-param" content="authenticity_token">
+  <meta name="csrf-token" content="Jhb4xk0EKLCwfyXsJoq08bZQDzifN973Fyz3y1w3SBNYjCSv28GJvWOSx67ExJ2uCgKk/zQnI4VlBELsRXbayA==">
+  <script type="text/javascript" src="https://js.pay.jp/v2/pay.js"></script>
+  <link rel="stylesheet" href="/assets/application-440cdd50394fefae8fb4861e51fe635abb7303fd12a264bdd55cf73ae07faaa1.css" media="all">
+  <script src="/packs/js/application-e6d8ca54e1ff5316cf45.js"></script>
+</head>
+
+<body>
+  <header class="second-header">
+    <%= link_to root_path do %>
+      <%= image_tag "furima-logo-color.png", class: "second-logo" %>
+    <% end %>
+  </header>
+
+
+  <%= form_with model: @user, url: user_session_path, local: true, class: "registration-main" do |f| %>
+    <div class="form-wrap">
+      <div class="form-header">
+        <h1 class="form-header-text">会員情報入力</h1>
+      </div>
+      <div class="login-flash-message">
+        Invalid Email or password.
+      </div>
+      
+      <div class="form-group">
+        <div class="form-text-wrap">
+          <label class="form-text">メールアドレス</label>
+          <span class="indispensable">必須</span>
+        </div>
+    　    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-text-wrap">
+          <label class="form-text">パスワード</label>
+          <span class="indispensable">必須</span>
+        </div>
+          <%= f.password_field :password, class:"input-default", id:"password", placeholder:"" %>
+      </div>
+
+      <div class="login-btn">
+        <input type="submit" name="commit" value="ログイン" class="login-red-btn" data-disable-with="ログイン">      </div>
+    </div>
+  <% end %>
+
+  <footer class="second-footer">
+    <div class="second-footer-text-wrap">
+      <p class="second-footer-text">プライバシーポリシー</p>
+      <p class="second-footer-text">FURIMA利用規約</p>
+      <p class="second-footer-text">特定商取引に関する表記</p>
+    </div>
+    <%= image_tag "furima-logo-color.png", class: "second-footer-logo" %>
+  </footer>
+
+</body>
+
+</html>
+
+<%= render "devise/shared/links" %>
