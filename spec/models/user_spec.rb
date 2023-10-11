@@ -70,29 +70,48 @@ RSpec.describe User, type: :model do
         expect(@user).to_not be_valid
       end
 
-      it 'お名前(全角)は、名字と名前がそれぞれ必須であること' do
+      # お名前(全角)のテストケース
+      it 'お名前(全角)の名字が必須であること' do
         @user.last_name = ''
+        expect(@user).to_not be_valid
+      end
+
+      it 'お名前(全角)の名前が必須であること' do
         @user.first_name = ''
         expect(@user).to_not be_valid
       end
 
-      it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      it 'お名前(全角)の名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
         @user.last_name = 'yamada'
+        expect(@user).to_not be_valid
+      end
+
+      it 'お名前(全角)の名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
         @user.first_name = 'taro'
         expect(@user).to_not be_valid
       end
 
-      it 'お名前カナ(全角)は、名字と名前がそれぞれ必須であること' do
+      # お名前カナ(全角)のテストケース
+      it 'お名前カナ(全角)の名字が必須であること' do
         @user.last_name_kana = ''
+        expect(@user).to_not be_valid
+      end
+
+      it 'お名前カナ(全角)の名前が必須であること' do
         @user.first_name_kana = ''
         expect(@user).to_not be_valid
       end
 
-      it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること' do
+      it 'お名前カナ(全角)の名字は、全角（カタカナ）での入力が必須であること' do
         @user.last_name_kana = 'やまだ'
+        expect(@user).to_not be_valid
+      end
+
+      it 'お名前カナ(全角)の名前は、全角（カタカナ）での入力が必須であること' do
         @user.first_name_kana = 'たろう'
         expect(@user).to_not be_valid
       end
+
 
       it '生年月日が必須であること' do
         @user.birth_date = ''
