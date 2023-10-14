@@ -1,4 +1,3 @@
-import '../controllers/calculation_controller'
 import './item_price';
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
