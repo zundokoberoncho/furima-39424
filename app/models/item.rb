@@ -3,7 +3,10 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to_active_hash :sales_status
   belongs_to :shipping_fee_status
-
+  belongs_to :category
+  belongs_to :prefecture
+  belongs_to_active_hash :scheduled_delivery
+  
   has_one_attached :image
   
   validates :image, presence: { message: "can't be blank" }

@@ -150,7 +150,7 @@
         <% @items.each do |item| %>
           <%# 商品がある場合の表示 %>
           <li class='list'>
-            <%= link_to "#" do %>
+            <%= link_to item_path(item.id) do %>
             <div class='item-img-content'>
               <%= image_tag item.image, class: "item-img" %>
               <%# 商品が売れていればsold outを表示しましょう %>
