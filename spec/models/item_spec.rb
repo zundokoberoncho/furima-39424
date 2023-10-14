@@ -31,32 +31,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description Info can't be blank")
       end
 
-      it 'カテゴリーの情報が空では出品できない' do
-        @item.category_id = nil
+      it 'カテゴリーの情報が「---」では出品できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-
-      it '商品の状態の情報が空では出品できない' do
-        @item.sales_status_id = nil
+      
+      it '商品の状態の情報が「---」では出品できない' do
+        @item.sales_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Sales status can't be blank")
+        expect(@item.errors.full_messages).to include("Sales status must be other than 1")
       end
-
-      it '配送料の負担の情報が空では出品できない' do
-        @item.shipping_fee_status_id = nil
+      
+      it '配送料の負担の情報が「---」では出品できない' do
+        @item.shipping_fee_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee status can't be blank")
       end
-
-      it '発送元の地域の情報が空では出品できない' do
-        @item.prefecture_id = nil
+      
+      it '発送元の地域の情報が「---」では出品できない' do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-
-      it '発送までの日数の情報が空では出品できない' do
-        @item.scheduled_delivery_id = nil
+      
+      it '発送までの日数の情報が「---」では出品できない' do
+        @item.scheduled_delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
@@ -71,6 +71,24 @@ RSpec.describe Item, type: :model do
         @item.price = '３００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is out of setting range")
+      end
+
+      it '価格が300円未満では出品できない' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is out of setting range")
+      end
+        
+      it '価格が9,999,999円を超えると出品できない' do
+        @item.price = 10_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is out of setting range")
+      end
+      
+      it 'userが紐付いていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
