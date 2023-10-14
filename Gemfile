@@ -87,3 +87,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0'
   gem 'factory_bot_rails'
 end
+
+gem 'active_hash'
+gem 'webpacker', '~> 5.0'
+group :test do
+  gem 'rails-controller-testing'
+end

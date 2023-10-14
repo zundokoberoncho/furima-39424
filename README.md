@@ -49,18 +49,18 @@ Things you may want to cover:
 
 ### Items Table
 
-| Column          | Type        | Options                           |
-|-----------------|-------------|-----------------------------------|
-| id              | integer     | Primary Key                       |
-| name            | string      | null: false                       |
-| description     | text        | null: false                       |
-| category_id     | integer     | null: false                       |
-| condition_id    | integer     | null: false                       |
-| shipping_fee_id | integer     | null: false                       |
-| prefecture_id   | integer     | null: false                       |
-| shipping_day_id | integer     | null: false                       |
-| price           | integer     | null: false                       |
-| user            | references  | null: false, foreign_key: true    |
+| Column                 | Type        | Options                           |
+|------------------------|-------------|-----------------------------------|
+| id                     | integer     | Primary Key                       |
+| name                   | string      | null: false                       |
+| description            | text        | null: false                       |
+| category_id            | integer     | null: false                       |
+| sales_status_id        | integer     | null: false                       |
+| shipping_fee_id        | integer     | null: false                       |
+| prefecture_id          | integer     | null: false                       |
+| scheduled_delivery_id  | integer     | null: false                       |
+| price                  | integer     | null: false                       |
+| user                   | references  | null: false, foreign_key: true    |
 
 #### Association
 - belongs_to :user
