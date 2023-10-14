@@ -1,3 +1,5 @@
+# /Users/708/projects/furima-39424/app/controllers/items_controller.rb
+
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
@@ -25,13 +27,20 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    puts "==== Debug Start ===="
+    puts "Selected Item: #{@item.inspect}"
+    puts "==== Debug End ===="
+  end
+
   private
 
   def item_params
     params.require(:item).permit(
-      :name, :description, :category_id, :sales_status_id, 
-      :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, 
-      :price, :image 
+      :name, :description, :category_id, :sales_status_id,
+      :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id,
+      :price, :image
     )
   end
 end
