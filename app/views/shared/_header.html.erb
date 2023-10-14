@@ -15,13 +15,14 @@
       <%= link_to root_path do %>
         <%= image_tag "furima-logo-color.png", class: "furima-icon" %>
       <% end %>
-      <form class="search-form" action="#">
+      <%= form_with url: "#", local: true, class: "search-form" do |f| %>
         <%= f.text_field :keyword, class: "input-box", placeholder: "キーワードから探す" %>
         <button class="search-button">
           <%= image_tag "search.png", class: "search-icon" %>
         </button>
-      </form>
+      <% end %>
     </div>
+
     <div class="nav">
       <ul class="lists-left">
         <li><%= link_to 'カテゴリー', '#', class: 'category-list' %></li>
