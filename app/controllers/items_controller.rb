@@ -1,5 +1,3 @@
-# /Users/708/projects/furima-39424/app/controllers/items_controller.rb
-
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
@@ -29,9 +27,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    puts "==== Debug Start ===="
-    puts "Selected Item: #{@item.inspect}"
-    puts "==== Debug End ===="
   end
 
   private
