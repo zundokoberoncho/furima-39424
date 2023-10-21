@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :redirect_if_sold_out, only: [:edit, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -32,6 +33,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.sold?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -53,6 +57,12 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       redirect_to root_path, alert: '削除に失敗しました'
+    end
+  end
+
+  def redirect_if_sold_out
+    if @item.sold_out?
+      redirect_to root_path
     end
   end
 
