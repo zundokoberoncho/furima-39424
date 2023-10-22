@@ -2,13 +2,18 @@ class OrderForm
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id, :token
 
-  validates :token, presence: true
-  validates :user_id, presence: true  # userが紐付いていなければ購入できない
-  validates :item_id, presence: true  # itemが紐付いていなければ購入できない
-  validates :postal_code, presence: { message: "can't be blank" }, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
+  with_options presence: true do
+    validates :token
+    validates :user_id  # userが紐付いていなければ購入できない
+    validates :item_id  # itemが紐付いていなければ購入できない
+    validates :city
+    validates :address
+    validates :phone_number  # ← この行を追加
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
+  end
+
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :city, :address, :phone_number, presence: true
-  validates :phone_number, length: { in: 10..11 }, format: { with: /\A\d+\z/, message: 'is invalid. Input only number' }
+  validates :phone_number, length: { in: 10..11 }, format: { with: /\A\d+\z/, message: 'is invalid. Input only number' }, if: -> { phone_number.present? }
 
   def item_price
     item.price

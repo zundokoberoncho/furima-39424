@@ -30,7 +30,7 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: { message: "Prefecture can't be blank" }, numericality: { other_than: 1, message: "can't be blank" }
   validates :scheduled_delivery_id, presence: { message: "Scheduled delivery can't be blank" }, numericality: { other_than: 1, message: "can't be blank" }
 
-  has_many :orders
+  has_one :order
 
   def sold_out?
     Order.exists?(item_id: self.id)
