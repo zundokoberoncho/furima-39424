@@ -93,3 +93,11 @@ gem 'webpacker', '~> 5.0'
 group :test do
   gem 'rails-controller-testing'
 end
+
+gem 'payjp'
+gem 'gon'
+gem "pry-rails"
+
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
