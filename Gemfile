@@ -89,7 +89,7 @@ group :development, :test do
 end
 
 gem 'active_hash'
-gem 'webpacker', '~> 5.0'
+
 group :test do
   gem 'rails-controller-testing'
 end
