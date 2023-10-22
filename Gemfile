@@ -97,5 +97,3 @@ end
 gem 'payjp'
 gem 'gon'
 gem "pry-rails"
-
-gem 'webpacker', '~> 5.x'

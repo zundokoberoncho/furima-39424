@@ -15,10 +15,6 @@ class OrderForm
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :phone_number, length: { in: 10..11 }, format: { with: /\A\d+\z/, message: 'is invalid. Input only number' }, if: -> { phone_number.present? }
 
-  def item_price
-    item.price
-  end
-
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
     if order.persisted?
