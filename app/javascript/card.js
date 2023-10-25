@@ -2,9 +2,9 @@
 document.addEventListener("turbo:load", function(){
   // console.log("Turbo is loaded!"); 
     const pay = (form) => {
-    console.log("テスト")
+    // console.log("テスト")
     const publicKey = gon.public_key;
-    const payjp = Payjp(publicKey); // PAY.JPテスト公開鍵
+    const payjp = Payjp(pk_test_7f0418f37fc7ea55ed703eda);
     const elements = payjp.elements();
     const numberElement = elements.create('cardNumber');
     const expiryElement = elements.create('cardExpiry');
@@ -41,11 +41,10 @@ document.addEventListener("turbo:load", function(){
   };
 
   function init() {
-    // console.log("Init function is called");  // ここでinit関数が呼ばれたことを確認
     const form = document.getElementById('charge-form');
     if (form) {
       pay(form);  // pay関数を呼び出す
     }
   }
-  init();  // これを忘れずに！
+  init();  //
 });
