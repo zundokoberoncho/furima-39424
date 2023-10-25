@@ -1,11 +1,13 @@
-console.log("JavaScript file is loaded!");
+document.addEventListener("DOMContentLoaded", function(){
+  // console.log("JavaScript file is loaded!");
 
 document.addEventListener("turbo:load", () => {
+  // console.log("Turbo is loaded!");
   const priceInput = document.getElementById("item-price");
   const addTaxDom = document.getElementById("add-tax-price");
   const profitDom = document.getElementById("profit");
 
-  console.log("priceInput:", priceInput);
+  // console.log("priceInput:", priceInput);
 
   if (priceInput && addTaxDom && profitDom) {
     priceInput.addEventListener("input", () => {
@@ -16,5 +18,6 @@ document.addEventListener("turbo:load", () => {
       addTaxDom.innerHTML = addTax;
       profitDom.innerHTML = profit;
     });
-  }
+    }
+  });
 });

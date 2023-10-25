@@ -28,7 +28,7 @@ RSpec.describe Item, type: :model do
       it '商品の説明が空では出品できない' do
         @item.description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Description Info can't be blank")
+        expect(@item.errors.full_messages).to include("Info can't be blank")
       end
 
       it 'カテゴリーの情報が「---」では出品できない' do
@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態の情報が「---」では出品できない' do
         @item.sales_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Sales status must be other than 1")
+        expect(@item.errors.full_messages).to include("Sales status can't be blank")
       end
       
       it '配送料の負担の情報が「---」では出品できない' do

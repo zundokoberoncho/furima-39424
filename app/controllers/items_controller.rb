@@ -33,22 +33,21 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    puts @item.scheduled_delivery_id  # デバッグ出力
   end
 
   def update
     if @item.update(item_params)
-      # 成功時の処理
       redirect_to item_path(@item)
     else
-      # 失敗時の処理
       puts "==== Debug Update Failed ===="
-      puts @item.errors.full_messages
-      flash.now[:alert] = @item.errors.full_messages.join(", ")
+      puts @item.errors.full_messages.join(", ")
       render :edit
     end
   end
 
   def destroy
+    puts "Destroy action called"  # デバッグ出力
     if current_user.id == @item.user_id
       @item.destroy
       redirect_to root_path

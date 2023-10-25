@@ -40,7 +40,7 @@ class Item < ApplicationRecord
 
   def sales_status_id_must_be_other_than_one
     if sales_status_id == 1
-      errors.add(:sales_status_id, "must be other than 1")
+      errors.add(:sales_status_id, "can't be blank")
     end
   end
 

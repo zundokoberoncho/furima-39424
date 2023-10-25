@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_21_111636) do
     t.integer "sales_status_id"
     t.integer "shipping_fee_status_id"
     t.integer "prefecture_id"
-    t.integer "scheduled_delivery_id"
+    t.integer "scheduled_delivery_status_id"
     t.bigint "user_id", null: false
     t.boolean "sold_out", default: false
     t.index ["user_id"], name: "index_items_on_user_id"

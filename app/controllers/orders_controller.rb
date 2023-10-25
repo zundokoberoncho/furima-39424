@@ -30,7 +30,8 @@ class OrdersController < ApplicationController
         )
         redirect_to root_path
       else
-        render 'index'
+        gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+        render 'index', status: :unprocessable_entity
       end
     else
       render 'index'

@@ -5,23 +5,23 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+- Ruby version
 
-* System dependencies
+- System dependencies
 
-* Configuration
+- Configuration
 
-* Database creation
+- Database creation
 
-* Database initialization
+- Database initialization
 
-* How to run the test suite
+- How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+- Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+- Deployment instructions
 
-* ...
+- ...
 
 # furima-39424
 
@@ -30,7 +30,7 @@ Things you may want to cover:
 ### Users Table
 
 | Column             | Type    | Options                   |
-|--------------------|---------|---------------------------|
+| ------------------ | ------- | ------------------------- |
 | id                 | integer | Primary Key               |
 | nickname           | string  | null: false               |
 | email              | string  | null: false, unique: true |
@@ -42,6 +42,7 @@ Things you may want to cover:
 | birthdate          | date    | null: false               |
 
 #### Association
+
 - has_many :items
 - has_many :purchases
 
@@ -49,20 +50,21 @@ Things you may want to cover:
 
 ### Items Table
 
-| Column                 | Type        | Options                           |
-|------------------------|-------------|-----------------------------------|
-| id                     | integer     | Primary Key                       |
-| name                   | string      | null: false                       |
-| description            | text        | null: false                       |
-| category_id            | integer     | null: false                       |
-| sales_status_id        | integer     | null: false                       |
-| shipping_fee_id        | integer     | null: false                       |
-| prefecture_id          | integer     | null: false                       |
-| scheduled_delivery_id  | integer     | null: false                       |
-| price                  | integer     | null: false                       |
-| user                   | references  | null: false, foreign_key: true    |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| id                     | integer    | Primary Key                    |
+| name                   | string     | null: false                    |
+| description            | text       | null: false                    |
+| category_id            | integer    | null: false                    |
+| sales_status_id        | integer    | null: false                    |
+| shipping_fee_id        | integer    | null: false                    |
+| prefecture_id          | integer    | null: false                    |
+| scheduled_delivery_id  | integer    | null: false                    |
+| price                  | integer    | null: false                    |
+| user                   | references | null: false, foreign_key: true |
 
 #### Association
+
 - belongs_to :user
 - has_one :purchase
 
@@ -70,13 +72,14 @@ Things you may want to cover:
 
 ### Purchases Table
 
-| Column  | Type       | Options                         |
-|---------|------------|---------------------------------|
-| id      | integer    | Primary Key                     |
-| user    | references | null: false, foreign_key: true  |
-| item    | references | null: false, foreign_key: true  |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| id     | integer    | Primary Key                    |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 #### Association
+
 - belongs_to :user
 - belongs_to :item
 - has_one :shipping_address
@@ -85,16 +88,17 @@ Things you may want to cover:
 
 ### ShippingAddresses Table
 
-| Column        | Type       | Options                                 |
-|---------------|------------|-----------------------------------------|
-| id            | integer    | Primary Key                             |
-| postal_code   | string     | null: false                             |
-| prefecture_id | integer    | null: false                             |
-| city          | string     | null: false                             |
-| address       | string     | null: false                             |
-| building      | string     |                                         |
-| phone_number  | string     | null: false                             |
-| purchase      | references | null: false, foreign_key: true          |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| id            | integer    | Primary Key                    |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | string     | null: false                    |
+| purchase      | references | null: false, foreign_key: true |
 
 #### Association
+
 - belongs_to :purchase
