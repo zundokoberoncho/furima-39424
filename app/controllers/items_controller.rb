@@ -40,9 +40,11 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      puts "==== Debug Update Failed ===="
-      puts @item.errors.full_messages.join(", ")
-      render :edit
+      flash.now[:alert] = @item.errors.full_messages.join(", ")
+      respond_to do |format|
+        format.html { render :edit }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@item, partial: "items/form", locals: { item: @item }) }
+      end
     end
   end
 
