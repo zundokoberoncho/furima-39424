@@ -1,8 +1,7 @@
-
-document.addEventListener("turbo:load", function(){
-  const pay = () => {
-    const publicKey = gon.public_key
-    const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
+document.addEventListener("turbo:load", function() {
+  const pay = (form) => {
+    const publicKey = gon.public_key;
+    const payjp = Payjp(publicKey);
     const elements = payjp.elements();
     const numberElement = elements.create('cardNumber');
     const expiryElement = elements.create('cardExpiry');
@@ -14,22 +13,22 @@ document.addEventListener("turbo:load", function(){
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      let renderDom;  // ここで変数を宣言
+      let renderDom;
 
       payjp.createToken(numberElement).then(function(response) {
         if (response.error) {
-          form.classList.remove('form-submitted');  // エラー時にform-submittedを削除
+          form.classList.remove('form-submitted');
           return;
         } else {
           const token = response.id;
-          renderDom = document.getElementById("charge-form");  // ここで変数に値を代入
+          renderDom = document.getElementById("charge-form");
           const tokenObj = `<input value=${token} name='order_form[token]' type='hidden'>`;
           renderDom.insertAdjacentHTML("beforeend", tokenObj);
         }
 
-        if (renderDom && !renderDom.classList.contains('form-submitted')) {  // renderDomが存在するかもチェック
+        if (renderDom && !renderDom.classList.contains('form-submitted')) {
           renderDom.classList.add('form-submitted');
-          document.getElementById("charge-form").submit();
+          form.submit();
           numberElement.clear();
           expiryElement.clear();
           cvcElement.clear();
@@ -41,8 +40,12 @@ document.addEventListener("turbo:load", function(){
   function init() {
     const form = document.getElementById('charge-form');
     if (form) {
-      pay(form);  // pay関数を呼び出す
+      pay(form);
     }
   }
-  init();  //
+
+  init();
 });
+
+window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);
