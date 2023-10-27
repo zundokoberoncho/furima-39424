@@ -13,21 +13,27 @@ document.addEventListener("turbo:load", function() {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      let renderDom;
+
+      // 既存のtoken情報を削除
+      const existingToken = document.querySelector("input[name='order_form[token]']");
+      if (existingToken) {
+        existingToken.remove();
+      }
 
       payjp.createToken(numberElement).then(function(response) {
         if (response.error) {
-          form.classList.remove('form-submitted');
+          form.classList.remove('form-submitted');  // エラー時に 'form-submitted' クラスを削除
+          alert('カード情報が正しくありません。'); // ユーザーにエラーを通知
           return;
         } else {
           const token = response.id;
-          renderDom = document.getElementById("charge-form");
+          const renderDom = document.getElementById("charge-form");
           const tokenObj = `<input value=${token} name='order_form[token]' type='hidden'>`;
           renderDom.insertAdjacentHTML("beforeend", tokenObj);
         }
 
-        if (renderDom && !renderDom.classList.contains('form-submitted')) {
-          renderDom.classList.add('form-submitted');
+        if (!form.classList.contains('form-submitted')) {
+          form.classList.add('form-submitted');
           form.submit();
           numberElement.clear();
           expiryElement.clear();
